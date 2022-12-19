@@ -18,5 +18,6 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private Team team;
     private String name;
 }

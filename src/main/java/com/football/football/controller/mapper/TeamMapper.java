@@ -15,12 +15,14 @@ public class TeamMapper {
                 .id(domain.getId())
                 .name(domain.getName())
                 .sponsor(domain.getSponsor())
+                .player(domain.getPlayer())
                 .build();
     }
 
     public Team toDomain(CreateTeamResponse rest){
         return Team.builder()
                 .name(rest.getName())
+                .player(rest.getPlayer())
                 .sponsor(rest.getSponsor())
                 .build();
     }
@@ -29,6 +31,7 @@ public class TeamMapper {
         return Team.builder()
                 .name(rest.getName())
                 .sponsor(rest.getSponsor())
+                .player(rest.getPlayer())
                 .build();
     }
 }

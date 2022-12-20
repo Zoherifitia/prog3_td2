@@ -1,0 +1,158 @@
+
+openapi: 3.0.0
+servers:
+  - url: https://virtserver.swaggerhub.com/hei-STD21063/PROG3_TD2/1.0.0
+info:
+  version: "latest"
+  title: PROG3 - TD2
+paths:
+  /match:
+    get:
+      tags:
+        - match
+      summary: get play match
+      operationId: get match
+      responses:
+        '200':
+          description: List of match
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlayAgainst'
+        '500':
+          description: Internal server error
+
+  /players:
+    get:
+      tags:
+        - Players
+      summary: get all Players
+      operationId: getPlayers
+      responses:
+        '200':
+          description: List of players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Players'
+        '500':
+          description: Internal server error
+  /sponsors:
+    get:
+      tags:
+        - Sponsors
+      summary: get all sponsors
+      operationId: getSponsors
+      responses:
+        '200':
+          description: List of sponsors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sponsor'
+        '500':
+          description: Internal server error
+  /team:
+    get:
+      tags:
+        - Team
+      summary: get all Team
+      operationId: getTeam
+      responses:
+        '200':
+          description: List of team
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Players:
+      type: object
+      allOf:
+        - $ref: '#components/schemas/CreatePlayer'
+      properties:
+        id:
+          type: integer
+
+    CreatePlayer:
+      type: object
+      properties:
+        name:
+          type: string
+        number:
+          type: integer
+    Sponsor:
+      type: object
+      allOf:
+        - $ref: "#components/schemas/CreateSponsor"
+      properties:
+        id:
+          type: integer
+    CreateSponsor:
+      type: object
+      properties:
+        name:
+          type: string
+    Team:
+      type: object
+      properties:
+        id:
+          type: integer
+        players:
+          type: array
+          items:
+            $ref: '#/components/schemas/Players'
+        sponsors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sponsor'
+      allOf:
+        - $ref: '#/components/schemas/CreateTeam'
+    CreateTeam:
+      type: object
+      allOf:
+        - $ref : '#components/schemas/Sponsor'
+      properties:
+        name:
+          type: string
+    CreatePlayAgain:
+      type: object
+      properties:
+        team_1:
+          $ref: '#/components/schemas/Team'
+        team_2:
+          $ref: '#/components/schemas/Team'
+        datetime:
+          type: string
+          format: date-time
+        stadium:
+          type: string
+    PlayAgainst:
+      type: object
+      properties:
+        id:
+          type: integer
+        team_1:
+          $ref: '#/components/schemas/Team'
+        team_2:
+          $ref: '#/components/schemas/Team'
+        datetime:
+          type: string
+          format: date-time
+
+
+
+
+

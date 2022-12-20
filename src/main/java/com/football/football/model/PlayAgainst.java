@@ -2,18 +2,25 @@ package com.football.football.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import java.time.Instant;
-
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Builder
 public class PlayAgainst {
-    private Instant dateTime;
+    @Id
+    private int id;
+    @OneToOne
+    @JoinColumn(name = "id_team")
+    private Team id_team;
+    @OneToOne
+    @JoinColumn(name = "id_andversary")
+    private Team id_opponent;
+    private Date datetime;
     private String stadium;
 }

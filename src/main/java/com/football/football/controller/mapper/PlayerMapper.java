@@ -12,7 +12,6 @@ public class PlayerMapper {
         return PlayerResponse.builder()
                 .id(domain.getId())
                 .name(domain.getName())
-                .number(domain.getNumber())
                 .build();
     }
 
